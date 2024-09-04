@@ -1,0 +1,47 @@
+.cardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    width: 70%;
+    padding-top: 30px;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 200px;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    margin-bottom: 10px;
+
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.cardImage {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.cardContent {
+    padding: 16px;
+    text-align: center;
+}
+
+.cardTitle {
+    font-size: 16px;
+    margin: 0;
+    font-weight: bold;
+}
+
+.cardRating {
+    font-size: 14px;
+    color: #888;
+}

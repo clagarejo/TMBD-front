@@ -1,0 +1,40 @@
+.main {
+    background-size: cover;
+    background-position: center;
+    height: 70vh;
+    display: flex;
+    align-items: flex-end;
+}
+
+.section {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0;
+}
+
+.description {
+    color: #ffffff;
+    font-size: 18px;
+    margin-bottom: 0;
+}
+
+.iconContainer {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.icon {
+    color: #ffffff;
+    font-size: 24px;
+    cursor: pointer;
+    margin-right: 15px;
+    transition: transform 0.2s ease;
+}
+
+.icon:hover {
+    transform: scale(1.2);
+}
