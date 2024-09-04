@@ -30,10 +30,13 @@
     justify-content: center;
     color: #fff;
     padding-right: 20px;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .routerMovies {
     margin-top: 10px;
     margin-left: 25px;
 }
+
 
