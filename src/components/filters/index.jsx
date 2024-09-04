@@ -4,7 +4,7 @@ import styles from './filter.module.css';
 import { useEffect, useState } from 'react';
 import { getGenres } from '@/services'; 
 
-export default function Filters({ onGenreChange }) {
+export default function Filters({ onGenreChange, onSearchChange  }) {
     const [genres, setGenres] = useState([]);
 
     useEffect(() => {
@@ -22,12 +22,13 @@ export default function Filters({ onGenreChange }) {
 
     return (
         <section className={styles.section}>
-            <div className={styles.searchContainer}>
+             <div className={styles.searchContainer}>
                 <h2 className={styles.heading}>Buscador</h2>
                 <input
                     type="search"
                     placeholder="Buscar película..."
                     className={styles.searchInput}
+                    onChange={onSearchChange}
                 />
             </div>
 

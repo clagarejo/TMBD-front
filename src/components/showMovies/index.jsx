@@ -15,7 +15,7 @@ export default function ShowMovies({ movies, onCardClick  }) {
                     />
                     <div className={styles.cardContent}>
                         <h3 className={styles.cardTitle}>{movie.title}</h3>
-                        <p className={styles.cardRating}>Rating: {Math.round(movie.vote_average)}%</p>
+                        <p className={styles.cardRating}>Rating: {Math.round(movie.vote_average * 10)}%</p>
                     </div>
                 </div>
             ))}

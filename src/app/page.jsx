@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
 import Banner from "@/components/bannerMovie";
 import Filters from "@/components/filters";
 import ShowMovies from "@/components/showMovies";
-import { getMovies, getMoviesByGenre } from "@/services";
+import { getMovies, getMoviesByGenre, getMoviesBySearch } from "@/services";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -11,11 +11,19 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [movie, setMovie] = useState(null);
   const [genreId, setGenreId] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const movies = genreId ? await getMoviesByGenre(genreId) : await getMovies();
+        let movies;
+        if (searchTerm) {
+          movies = await getMoviesBySearch(searchTerm);
+        } else if (genreId) {
+          movies = await getMoviesByGenre(genreId);
+        } else {
+          movies = await getMovies();
+        }
         setMovies(movies);
         if (movies.length > 0) {
           setMovie(movies[0]);
@@ -28,14 +36,20 @@ export default function Home() {
     };
 
     fetchMovies();
-  }, [genreId]); 
+  }, [genreId, searchTerm]);
 
   const handleCardClick = (movie) => {
     setMovie(movie);
   };
 
   const handleGenreChange = (event) => {
-    setGenreId(event.target.value); 
+    setSearchTerm("");
+    setGenreId(event.target.value);
+  };
+
+  const handleSearchChange = (event) => {
+    setGenreId(null);
+    setSearchTerm(event.target.value);
   };
 
   if (loading) {
@@ -46,7 +60,12 @@ export default function Home() {
     <>
       <Banner movie={movie} />
       <div style={{ display: 'flex', backgroundColor: '#000' }}>
-        <Filters onGenreChange={handleGenreChange} />
+        <Filters
+          genreId={genreId}
+          searchTerm={searchTerm}
+          onGenreChange={handleGenreChange}
+          onSearchChange={handleSearchChange}
+        />
         <ShowMovies movies={movies} onCardClick={handleCardClick} />
       </div>
     </>
