@@ -3,18 +3,19 @@
 import Banner from "@/components/bannerMovie";
 import Filters from "@/components/filters";
 import ShowMovies from "@/components/showMovies";
-import { getMovies } from "@/services/getMovies";
+import { getMovies, getMoviesByGenre } from "@/services";
 import { useEffect, useState } from "react";
 
 export default function Home() {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [movie, setMovie] = useState('');
+  const [movie, setMovie] = useState(null);
+  const [genreId, setGenreId] = useState(null);
 
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const movies = await getMovies();
+        const movies = genreId ? await getMoviesByGenre(genreId) : await getMovies();
         setMovies(movies);
         if (movies.length > 0) {
           setMovie(movies[0]);
@@ -27,10 +28,14 @@ export default function Home() {
     };
 
     fetchMovies();
-  }, []);
+  }, [genreId]); 
 
   const handleCardClick = (movie) => {
     setMovie(movie);
+  };
+
+  const handleGenreChange = (event) => {
+    setGenreId(event.target.value); 
   };
 
   if (loading) {
@@ -41,7 +46,7 @@ export default function Home() {
     <>
       <Banner movie={movie} />
       <div style={{ display: 'flex', backgroundColor: '#000' }}>
-        <Filters />
+        <Filters onGenreChange={handleGenreChange} />
         <ShowMovies movies={movies} onCardClick={handleCardClick} />
       </div>
     </>
