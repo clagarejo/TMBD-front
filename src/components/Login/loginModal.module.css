@@ -14,7 +14,7 @@
 
 .modalContent {
     width: 90%;
-    height: 65vh;
+    height: vh;
     background: transparent;
     display: flex;
     border-radius: 8px;
@@ -157,7 +157,6 @@ input:checked+.slider:before {
 .emailButton {
     width: 80%;
     padding: 10px;
-    background-color: #365dde;
     color: white;
     border: none;
     border-radius: 5px;
